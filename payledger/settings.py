@@ -84,10 +84,7 @@ DATABASES = {
         "PORT": config("POSTGRES_PORT", default="5432"),
         # Keep connections alive in the worker pool
         "CONN_MAX_AGE": 60,
-        "OPTIONS": {
-            # Needed for select_for_update() to work reliably
-            "isolation_level": "read committed",
-        },
+       
     }
 }
 

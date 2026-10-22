@@ -29,6 +29,7 @@ transaction can have sneaked in between our read and our write.
 import hashlib
 import json
 import logging
+from django.core.serializers.json import DjangoJSONEncoder
 
 from django.core.cache import cache
 from django.db import transaction
@@ -113,7 +114,7 @@ def store_response(
 ):
     """Persist the response in both Redis and the DB."""
     request_hash = _hash_body(request_body)
-    body_str = json.dumps(response_body)
+    body_str = json.dumps(response_body, cls=DjangoJSONEncoder)
     redis_key = _redis_key(idempotency_key)
 
     _store_in_redis(redis_key, request_hash, response_status, body_str)
