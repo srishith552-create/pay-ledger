@@ -257,26 +257,19 @@ locust -f load_test/locustfile.py --host http://localhost:8000
 
 ## Results
 
-> **Student instructions**: Run the load test, copy the Locust summary table, and paste it below.
+Measured locally with Locust: 50 concurrent users, 60 seconds, Docker Compose on a MacBook Air (4 gunicorn workers, 2 threads each). The user throttle was raised for the test via `THROTTLE_USER`.
 
-| Endpoint | Requests | Failures | Median (ms) | 95th % (ms) | RPS |
+| Endpoint | Requests | Failures | Median | p95 | p99 |
 |---|---|---|---|---|---|
-| POST /api/transfers/ | _fill in_ | _fill in_ | _fill in_ | _fill in_ | _fill in_ |
-| GET /api/transfers/list/ | _fill in_ | _fill in_ | _fill in_ | _fill in_ | _fill in_ |
-| GET /api/webhooks/deliveries/ | _fill in_ | _fill in_ | _fill in_ | _fill in_ | _fill in_ |
+| POST /api/transfers/ | 4,546 | 0 | 16 ms | 68 ms | 190 ms |
+| GET /api/transfers/list/ | 2,613 | 0 | 11 ms | 85 ms | 140 ms |
+| GET /api/webhooks/deliveries/ | 1,737 | 0 | 7 ms | 16 ms | 30 ms |
+| All requests | 8,996 | 0 | 13 ms | 64 ms | 260 ms |
 
-> Webhook delivery throughput: _fill in_ deliveries/min
+Throughput: about 150 requests/s overall, about 76 transfers/s on the write path.
 
----
+**Ledger reconciliation:** after all load runs, 9,255 transfers were recorded, the destination balance was 9,255, and the source balance was 100,000,000 − 9,255 = 99,990,745. The total was unchanged, so there was no double-spend under concurrent load.
 
-## Git History
+Raw Locust output is in `load_test/results_stats.csv`. Webhook delivery throughput was not load-tested.
 
-Each feature is committed separately so the history tells the story:
-
-```
-feat: Phase 1 — project skeleton, Docker Compose, models
-feat: Phase 2 — transfer service, double-entry ledger, idempotency
-feat: Phase 3 — Celery webhook delivery with HMAC signing and retries
-feat: Phase 4 — pytest test suite
-feat: Phase 5 — Locust load test, README, DESIGN
-```
+To reproduce: `docker compose run --rm -e PYTHONPATH=/app web python load_test/seed.py`, then `locust -f load_test/locustfile.py --headless --users 50 --spawn-rate 10 --run-time 60s --host http://localhost:8000`.
