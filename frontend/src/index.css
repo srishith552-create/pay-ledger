@@ -171,3 +171,15 @@ td {
   background: #7f1d1d;
   color: #fca5a5;
 }
+
+.hint {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.badge.pending,
+.badge.retrying {
+  background: #713f12;
+  color: #fde68a;
+}
