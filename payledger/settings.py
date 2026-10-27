@@ -170,6 +170,10 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_ALLOW_ALL_ORIGINS = DEBUG  # Never True in production
 
+from corsheaders.defaults import default_headers  # noqa: E402
+
+CORS_ALLOW_HEADERS = list(default_headers) + ["idempotency-key"]
+
 
 # ─── Internationalisation ───────────────────────────────────────────────────
 LANGUAGE_CODE = "en-us"

@@ -1,0 +1,173 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+.card {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 24px;
+  background: #1e293b;
+  border-radius: 12px;
+}
+
+label {
+  display: block;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 1px solid #475569;
+  background: #0f172a;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+}
+
+button.link {
+  background: none;
+  color: #93c5fd;
+  padding: 12px 0 0;
+}
+
+.error {
+  color: #fca5a5;
+  font-size: 14px;
+}
+
+.shell {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.panel {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.panel h2 {
+  margin-top: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #334155;
+}
+
+.mono {
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.row input {
+  flex: 1;
+  margin-top: 0;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 1px solid #475569;
+  background: #0f172a;
+  color: inherit;
+}
+
+.success {
+  color: #86efac;
+  font-size: 14px;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+}
+
+.nav a {
+  color: #94a3b8;
+  text-decoration: none;
+  padding: 4px 2px;
+}
+
+.nav a.active {
+  color: #e2e8f0;
+  border-bottom: 2px solid #3b82f6;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+td {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pager {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: #334155;
+}
+
+.badge.completed,
+.badge.success {
+  background: #14532d;
+  color: #86efac;
+}
+
+.badge.failed {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
